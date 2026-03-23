@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter utilisateur</title>
+
+    <!-- Lien vers le fichier CSS moderne -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- Container principal avec style moderne -->
+<div class="container">
+
+    <!-- Titre de la page avec ombre et couleur sombre -->
+    <h2>Ajouter un utilisateur</h2>
+
+    <!-- Formulaire stylé -->
+    <form th:action="@{/users/save}" th:object="${user}" method="post">
+
+        <!-- Champ Nom -->
+        <label>Nom</label>
+        <input type="text" th:field="*{name}" placeholder="Entrer le nom">
+        <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+
+        <!-- Champ Email -->
+        <label>Email</label>
+        <input type="text" th:field="*{email}" placeholder="Entrer l'email">
+        <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+
+        <!-- Bouton Ajouter avec effet hover et léger agrandissement -->
+        <button type="submit">Ajouter</button>
+
+    </form>
+
+    <br>
+
+    <!-- Lien retour avec couleur harmonisée -->
+    <a th:href="@{/users}">← Retour à la liste</a>
+
+</div>
+
+</body>
+</html>

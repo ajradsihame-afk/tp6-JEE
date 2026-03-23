@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste utilisateurs</title>
+
+    <!-- Lien vers le CSS moderne -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- Container principal centré avec style moderne -->
+<div class="container">
+
+    <!-- Titre de la page avec couleur sombre et ombre légère -->
+    <h2>Liste des utilisateurs</h2>
+
+    <!-- Bouton/lien pour ajouter un nouvel utilisateur, stylé via CSS -->
+    <a th:href="@{/users/new}" style="display:inline-block; margin-bottom:15px; background:#3b5998; color:white; padding:8px 12px; border-radius:8px; text-decoration:none; transition:0.3s;">
+        ➕ Ajouter un utilisateur
+    </a>
+
+    <!-- Tableau stylé avec bordures douces et hover -->
+    <table>
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- Boucle sur tous les utilisateurs du modèle -->
+        <tr th:each="u : ${users}">
+            <!-- Affichage du nom -->
+            <td th:text="${u.name}"></td>
+            <!-- Affichage de l'email -->
+            <td th:text="${u.email}"></td>
+
+            <!-- Lien pour modifier l'utilisateur -->
+            <td>
+                <a th:href="@{/users/edit/{id}(id=${u.id})}" style="color:#3b5998; font-weight:bold; text-decoration:none;">Modifier</a>
+            </td>
+
+            <!-- Lien pour supprimer l'utilisateur -->
+            <td>
+                <a th:href="@{/users/remove/{id}(id=${u.id})}" style="color:#d9534f; font-weight:bold; text-decoration:none;">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier utilisateur</title>
+
+    <!-- Lien vers le CSS moderne -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- Container principal centré avec style moderne -->
+<div class="container">
+
+    <!-- Titre de la page -->
+    <h2>Modifier utilisateur</h2>
+
+    <!-- Formulaire de modification, lié à l'utilisateur existant -->
+    <form th:action="@{/users/update/{id}(id=${user.id})}" th:object="${user}" method="post">
+        <!-- th:object lie le formulaire à l'objet User pour préremplir les champs -->
+
+        <!-- Champ Nom -->
+        <label>Nom</label>
+        <input type="text" th:field="*{name}" placeholder="Entrer le nom">
+        <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+
+        <!-- Champ Email -->
+        <label>Email</label>
+        <input type="text" th:field="*{email}" placeholder="Entrer l'email">
+        <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+
+        <!-- Bouton Mettre à jour -->
+        <button type="submit">Mettre à jour</button>
+
+    </form>
+
+    <br>
+
+    <!-- Lien retour vers la liste des utilisateurs -->
+    <a th:href="@{/users}" style="display:inline-block; color:#3b5998; text-decoration:none; font-weight:bold;">← Retour</a>
+
+</div>
+
+</body>
+</html>
